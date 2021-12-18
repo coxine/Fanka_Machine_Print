@@ -1,9 +1,9 @@
 @font-face {
-    font-family: "fzfs";
-    src: url("/fzfs.woff2") format("woff2");
+    font-family: "fzbs";
+    src: url("/fzbs.ttf") format("ttf");
 }
 body {
 	background: url(/view/nexmoe/bg.svg) no-repeat center fixed; 
 	background-size: cover;
-    font-family: 'Times New Roman', 'fzfs';
+    font-family: 'Times New Roman', 'fzbs';
 }
