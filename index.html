@@ -7,7 +7,20 @@
         <link rel="shortcut icon" href="/favicon.svg">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css"/>
         <link rel="stylesheet" href="/style.css">
+        <script src="/print.js"></script>
         <script src="//cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+        <script>
+            if ('serviceWorker' in window.navigator) {
+              navigator.serviceWorker.register('./sw.js', { scope: './' })
+                .then(function (reg) {
+                  console.log('success', reg);
+                })
+                .catch(function (err) {
+                  console.log('fail', err);
+                });
+            }
+        </script>
+        <link rel="manifest" href="manifest.webmanifest" />
     </head>
     <body>
         <header class="mdui-appbar mdui-shadow-0" style="background:rgba(255,255,255,0.2)">
@@ -17,21 +30,28 @@
                 </div>
             </div>
         </header>
-        <div class="mdui-container">
+        <div class="mdui-container no-print">
             <div class="mdui-container-fluid">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">标题</label>
-                    <input class="mdui-textfield-input" />
+                    <input class="mdui-textfield-input" id="input-title"/>
                 </div>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">作者</label>
-                    <input class="mdui-textfield-input" />
+                    <input class="mdui-textfield-input" id="input-author" />
                 </div>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">正文</label>
-                    <textarea class="mdui-textfield-input"></textarea>
-                  </div>
+                    <textarea class="mdui-textfield-input" id="input-passage"></textarea>
+                </div>
+                <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="CreatePrint()">打印</button>
             </div>
+        </div>
+        <div class="print">
+            <h3 id="print-title"></h3>
+            <h4 id="print-author"></h4>
+            <p id="print-passage"></p>
+
         </div>
     </body>
 </html>
